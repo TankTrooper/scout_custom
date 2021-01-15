@@ -81,3 +81,9 @@ minetest.register_node("scout_custom:dirty_snow", {
 	tiles = {"dirty_snow.png"},
 	groups = {oddly_breakable_by_hand=2},
 })
+--recipes for items
+
+minetest.register_craft({
+	output = "scout_custom:ice_pine_wood 4",
+	recipe = {{"scout_custom:ice_pine_tree"}}
+})
