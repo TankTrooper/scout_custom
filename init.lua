@@ -1,3 +1,4 @@
+--nodes registration
 minetest.register_node("scout_custom:ember_black", {
 	description = "Black Ember",
 	tiles = {"ember_black.png"},
@@ -81,8 +82,19 @@ minetest.register_node("scout_custom:dirty_snow", {
 	tiles = {"dirty_snow.png"},
 	groups = {oddly_breakable_by_hand=2},
 })
+--snowy_leaves node registration
+minetest.register_node("scout_custom:snowy_leaves", {
+	description = "Snowy Leaves",
+	drawtype = "allfaces_optional",
+	tiles = {"snowy_leaves.png"},
+	inventory_image = "snowy_leaves.png",
+	wield_image = "snowy_leaves.png",
+	paramtype = "light",
+	walkable = true,
+	waving = 1,
+	groups = {snappy = 3, leafdecay = 3, leaves = 1, flammable = 2},
+})
 --recipes for items
-
 minetest.register_craft({
 	output = "scout_custom:ice_pine_wood 4",
 	recipe = {{"scout_custom:ice_pine_tree"}}
