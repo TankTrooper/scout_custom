@@ -99,3 +99,51 @@ minetest.register_craft({
 	output = "scout_custom:ice_pine_wood 4",
 	recipe = {{"scout_custom:ice_pine_tree"}}
 })
+--icy grass
+minetest.register_node(":scout_custom:grass_1", {
+	description = "Icy Grass",
+	drawtype = "plantlike",
+	waving = 1,
+	tiles = {"icy_grass_1.png"},
+	inventory_image = "icy_grass_3.png",
+	wield_image = "icy_grass_3.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy=3,flora=1,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+	},
+
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("scout_custom:grass_"..math.random(1,5))
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("scout_custom:grass_1 "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+for i=2,5 do
+	minetest.register_node(":scout_custom:grass_"..i, {
+		description = "Icy Grass",
+		drawtype = "plantlike",
+		waving = 1,
+		tiles = {"icy_grass_"..i..".png"},
+		inventory_image = "icy_grass_"..i..".png",
+		wield_image = "icy_grass_"..i..".png",
+		paramtype = "light",
+		sunlight_propagates = true,
+		walkable = false,
+		buildable_to = true,
+		drop = "icy:grass_1",
+		groups = {snappy=3,flora=1,attached_node=1,not_in_creative_inventory=1},
+		sounds = default.node_sound_leaves_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		},
+	})
+end
